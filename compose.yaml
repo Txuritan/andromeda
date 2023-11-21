@@ -23,6 +23,8 @@ services:
      - internal
     volumes:
       - minecraft-data:/data
+      - ./config:/data/config
+      - ./mods:/data/mods
       - ./ops.json:/data/ops.json
       - ./whitelist.json:/data/whitelist.json
     environment:
@@ -81,7 +83,6 @@ services:
         more-mobs:4ZQjIDUu
         netherite-beacons:SyQnSClE
         no-feeding-baby:XOAhLxDh
-        perch:vdFHQpeN
         powershot:Ssm0hBu1
         purpurpacks-copper-block-beacon-base:gQfLC53r
         realisticsleep:iKynU94V
