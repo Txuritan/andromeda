@@ -1,0 +1,20 @@
+[
+  {
+    "uuid": "738c8fc3-7455-4e29-b16e-1e270ffb52cb",
+    "name": "StateEarth8",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "94a136f0-eff7-470d-b703-aa4033d4aafe",
+    "name": "Txuritan",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "cff87b25-3d9c-4f44-accf-cecbbf2e4b15",
+    "name": "Yu_Cypher",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]
