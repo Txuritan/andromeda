@@ -48,10 +48,8 @@ services:
       MODRINTH_PROJECTS: |
         fabric-api:FhOnpSMY
         fabric-language-kotlin:vnTAITh8
-
         cloth-config:jvy82BGQ
         midnightlib:Ozm1zl15
-
         c2me-fabric:ilKwGRiJ
         carpet:xksYKkvF
         ferrite-core:unerR5MN
@@ -63,10 +61,8 @@ services:
         sneaky-server:lp8D0Lex
         spark:tCU9VuzX
         starlight:PLbxwptm
-
         dynmap:UXqPUg7D
         journeymap:7zt8duBI
-
         attack-through-grass:6B73MDT8
         axes-are-weapons:BDjHRAAE
         banner-flags:pQn2LUL0
@@ -96,12 +92,10 @@ services:
         through-the-lily-pads-gently:pWQzvKBG
         unloaded-activity:hqwioCvS
         why-am-i-on-fire:xPOy7Kso
-
         balm:qHXzOzUv
         forgiving-void:MPiNyFvE
         kleeslabs:XEBQ0HGG
         netherportalfix:5UbTkcSQ
-
         collective:Guw1MFbD
         bottle-your-xp:Ax5muOcA
         conduits-prevent-drowned:1XyB1iVm
@@ -139,7 +133,6 @@ services:
         villager-names-serilum:WqNH3R93
         weaker-spiderwebs:y64pimyg
         wool-tweaks:1bjyBBLW
-
         better-trees:LHuXoUsx
         ct-overhaul-village:7LYJgioY
         dungeons-and-taverns:JOwejnHw
