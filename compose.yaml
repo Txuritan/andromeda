@@ -17,8 +17,6 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
-    ports:
-      - "25565:25565"
     networks:
      - internal
     volumes:
@@ -189,12 +187,12 @@ services:
     depends_on:
       prometheus:
         condition: service_healthy
-    ports:
-     - '3000:3000'
     networks:
      - internal
     volumes:
       - grafana-data:/var/lib/grafana
+    environment:
+      GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s/grafana/"
 
 
 
