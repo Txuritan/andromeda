@@ -202,8 +202,8 @@ services:
     depends_on:
       minecraft:
         condition: service_healthy
-      grafana:
-        condition: service_healthy
+      # grafana:
+      #   condition: service_healthy
     networks:
      - internal
      - external
