@@ -2,7 +2,6 @@ version: '3.5'
 
 volumes:
   grafana-data: {}
-  minecraft-data: {}
   prometheus-data: {}
   velocity-data: {}
 
@@ -20,9 +19,9 @@ services:
     networks:
      - internal
     volumes:
-      - minecraft-data:/data
-      - ./ops.json:/data/ops.json
-      - ./whitelist.json:/data/whitelist.json
+      - ./minecraft:/data
+      - ./minecraft/ops.json:/data/ops.json
+      - ./minecraft/whitelist.json:/data/whitelist.json
     environment:
       MEMORY: "2G"
       JVM_OPTS: ""
