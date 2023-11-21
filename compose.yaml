@@ -183,9 +183,9 @@ services:
     image: grafana/grafana-oss:9.5.14
     container_name: grafana
     restart: unless-stopped
-    depends_on:
-      prometheus:
-        condition: service_healthy
+    # depends_on:
+    #   prometheus:
+    #     condition: service_healthy
     networks:
      - internal
     volumes:
