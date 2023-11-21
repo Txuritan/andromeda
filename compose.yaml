@@ -23,8 +23,6 @@ services:
      - internal
     volumes:
       - minecraft-data:/data
-      - ./config:/data/config
-      - ./mods:/data/mods
       - ./ops.json:/data/ops.json
       - ./whitelist.json:/data/whitelist.json
     environment:
