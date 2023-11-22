@@ -155,9 +155,10 @@ services:
      - external
     volumes:
       - ./velocity:/server
-    command: ["/usr/bin/run-bungeecord.sh", "-Dvelocity.packet-decode-logging=true"]
     environment:
       TYPE: VELOCITY
+
+      JVM_OPTS: -Dvelocity.packet-decode-logging=true
 
       DEBUG: false
       ENABLE_RCON: true
