@@ -17,7 +17,7 @@ services:
     tty: true
     stdin_open: true
     networks:
-     - internal
+      - internal
     volumes:
       - ./minecraft:/data
       - ./minecraft/ops.json:/data/ops.json
@@ -150,8 +150,8 @@ services:
     ports:
       - "25565:25577"
     networks:
-     - internal
-     - external
+      - internal
+      - external
     volumes:
       - ./velocity:/server
     environment:
@@ -174,7 +174,7 @@ services:
       minecraft:
         condition: service_healthy
     networks:
-     - internal
+      - internal
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
       - ./prometheus:/prometheus
@@ -209,5 +209,7 @@ services:
     ports:
       - "80:80"
     networks:
-     - internal
-     - external
+      - internal
+      - external
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
