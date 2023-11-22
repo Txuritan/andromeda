@@ -202,10 +202,8 @@ services:
     container_name: nginx
     restart: unless-stopped
     depends_on:
-      minecraft:
-        condition: service_healthy
-      # grafana:
-      #   condition: service_healthy
+      - minecraft
+      - grafana
     ports:
       - "80:80"
     networks:
