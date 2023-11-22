@@ -164,7 +164,6 @@ services:
       ENABLE_RCON: true
       PLUGINS: |
         https://cdn.modrinth.com/data/VCAqN1ln/versions/NrhkEvGh/Maintenance-Velocity-4.2.0.jar
-        https://cdn.modrinth.com/data/5IovSY3u/versions/yqrSz3nR/raknetify-velocity-0.1.0%2Balpha.5.109-all.jar
 
 
 
