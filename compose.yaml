@@ -43,8 +43,6 @@ services:
       SEED: -5132365962278556237
       VIEW_DISTANCE: 16
 
-      FORWARD_SECRET: eOCiFPANsZFw
-
       MODRINTH_PROJECTS: |
         fabric-api:FhOnpSMY
         fabric-language-kotlin:vnTAITh8
