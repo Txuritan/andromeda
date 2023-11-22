@@ -2,6 +2,7 @@ fabric-api:FhOnpSMY
 fabric-language-kotlin:vnTAITh8
 
 cloth-config:jvy82BGQ
+cristel-lib:HiLmugPC
 midnightlib:Ozm1zl15
 
 c2me-fabric:ilKwGRiJ
@@ -96,4 +97,5 @@ ct-overhaul-village:7LYJgioY
 dungeons-and-taverns:JOwejnHw
 incendium:QL8CxhjY
 nullscape:w4mEZnbU
+towns-and-towers:avrYXbs7
 wwoo:cNiETBJi

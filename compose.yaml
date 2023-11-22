@@ -43,10 +43,13 @@ services:
       SEED: -5132365962278556237
       VIEW_DISTANCE: 16
 
+      FORWARD_SECRET: eOCiFPANsZFw
+
       MODRINTH_PROJECTS: |
         fabric-api:FhOnpSMY
         fabric-language-kotlin:vnTAITh8
         cloth-config:jvy82BGQ
+        cristel-lib:HiLmugPC
         midnightlib:Ozm1zl15
         c2me-fabric:ilKwGRiJ
         carpet:xksYKkvF
@@ -135,12 +138,13 @@ services:
         dungeons-and-taverns:JOwejnHw
         incendium:QL8CxhjY
         nullscape:w4mEZnbU
+        towns-and-towers:avrYXbs7
         wwoo:cNiETBJi
 
 
 
   velocity:
-    image: itzg/bungeecord:java11
+    image: itzg/bungeecord:java17
     container_name: velocity
     restart: unless-stopped
     depends_on:
@@ -152,8 +156,7 @@ services:
      - internal
      - external
     volumes:
-      - ./velocity.yml:/config/config.yml
-      - velocity-data:/server
+      - ./velocity:/server
     environment:
       TYPE: VELOCITY
 
@@ -175,7 +178,7 @@ services:
      - internal
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
-      - prometheus-data:/prometheus
+      - ./prometheus:/prometheus
 
 
 
@@ -189,7 +192,7 @@ services:
     networks:
      - internal
     volumes:
-      - grafana-data:/var/lib/grafana
+      - ./grafana:/var/lib/grafana
     environment:
       GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s/grafana/"
 
