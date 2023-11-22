@@ -10,7 +10,7 @@ motd = "<#09add3>A Velocity Server"
 
 # What should we display for the maximum number of players? (Velocity does not support a cap
 # on the number of players online.)
-show-max-players = 500
+show-max-players = 20
 
 # Should we authenticate players with Mojang? By default, this is on.
 online-mode = true
@@ -81,7 +81,7 @@ try = [
 
 [forced-hosts]
 # Configure your forced hosts here.
-"tavern.example.com" = [
+"tavern.txuritan.duckdns.org" = [
     "tavern"
 ]
 
@@ -96,7 +96,7 @@ compression-level = -1
 
 # How fast (in milliseconds) are clients allowed to connect after the last connection? By
 # default, this is three seconds. Disable this by setting this to 0.
-login-ratelimit = 3000
+login-ratelimit = 0
 
 # Specify a custom timeout for connection timeouts here. The default is five seconds.
 connection-timeout = 5000
@@ -109,7 +109,7 @@ read-timeout = 30000
 haproxy-protocol = false
 
 # Enables TCP fast open support on the proxy. Requires the proxy to run on Linux.
-tcp-fast-open = false
+tcp-fast-open = true
 
 # Enables BungeeCord plugin messaging channel support on Velocity.
 bungee-plugin-message-channel = true

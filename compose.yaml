@@ -206,6 +206,8 @@ services:
         condition: service_healthy
       # grafana:
       #   condition: service_healthy
+    ports:
+      - "80:80"
     networks:
      - internal
      - external
