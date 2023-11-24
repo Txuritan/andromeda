@@ -40,6 +40,11 @@ services:
       TYPE: "FABRIC"
       REPLACE_ENV_DURING_SYNC: true
 
+      CFG_MINECRAFT_DATAPACK_URL: ${MINECRAFT_DATAPACK_URL}
+      CFG_MINECRAFT_RESOURCE_PACK_URL: ${MINECRAFT_RESOURCE_PACK_URL}
+      CFG_MINECRAFT_RESOURCE_PACK_SHA1: ${MINECRAFT_RESOURCE_PACK_SHA1}
+      CFG_MINECRAFT_ROOT_USER: ${MINECRAFT_ROOT_USER}
+
       EULA: true
       GUI: false
       MOTD: "That's what you get with a §l§ccritical hit§r\\!"
@@ -172,6 +177,8 @@ services:
     environment:
       TYPE: VELOCITY
       REPLACE_ENV_DURING_SYNC: true
+
+      CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
 
       JVM_OPTS: -Dvelocity.packet-decode-logging=true
 
