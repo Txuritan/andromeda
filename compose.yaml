@@ -37,6 +37,7 @@ services:
       - ./config/minecraft/config:/config
       - ./config/minecraft/mods:/mods
       - ./config/minecraft/dynmap/configuration.txt:/data/dynmap/configuration.txt
+      - ./data/minecraft:/data
     environment:
       MEMORY: "2G"
       JVM_OPTS: ""
