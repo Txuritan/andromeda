@@ -228,3 +228,7 @@ services:
     image: linuxserver/duckdns:version-e48542ca
     container_name: duckdns
     restart: unless-stopped
+    environment:
+      SUBDOMAINS: ${DUCKDNS_SUBDOMAINS}
+      TOKEN: ${DUCKDNS_TOKEN}
+      UPDATE_IP: ${DUCKDNS_UPDATE_IP}
