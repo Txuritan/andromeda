@@ -4,6 +4,11 @@ networks:
   internal: {}
   external: {}
 
+volumes:
+  caddy-data:
+  grafana-data:
+  prometheus-data:
+
 services:
   postgres:
     image: postgres:16.1-alpine3.18
@@ -203,7 +208,7 @@ services:
       - internal
     volumes:
       - ./config/prometheus.yaml:/etc/prometheus/prometheus.yml
-      - ./data/prometheus:/prometheus
+      - prometheus-data:/prometheus
 
   grafana:
     image: grafana/grafana-oss:9.5.14
@@ -214,7 +219,7 @@ services:
     networks:
      - internal
     volumes:
-      - ./data/grafana:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     environment:
       GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s/grafana/"
 
@@ -233,7 +238,7 @@ services:
       - internal
       - external
     volumes:
-      - ./data/caddy:/data
+      - caddy-data:/data
       - ./config/caddy:/config
 
   duckdns:
