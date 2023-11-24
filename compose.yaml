@@ -171,6 +171,7 @@ services:
       - ./data/velocity:/server
     environment:
       TYPE: VELOCITY
+      REPLACE_ENV_DURING_SYNC: true
 
       JVM_OPTS: -Dvelocity.packet-decode-logging=true
 
