@@ -34,7 +34,7 @@ storage:
   # MySQL DB for map storage (at 'hostname':'port' in database 'database' using user 'userid' password 'password' and table prefix 'prefix'
   type: postgres
   hostname: postgres
-  port: 3306
+  port: 5432
   database: ${CFG_DATABASE_NAME}
   userid: ${CFG_DATABASE_USERNAME}
   password: ${CFG_DATABASE_PASSWORD}
