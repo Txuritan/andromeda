@@ -1,0 +1,9 @@
+txuritan.duckdns.org {
+    handle /grafana/* {
+        reverse_proxy grafana:3000
+    }
+
+    handle {
+        reverse_proxy minecraft:8123
+    }
+}
