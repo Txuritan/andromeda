@@ -10,27 +10,12 @@ volumes:
   prometheus-data:
 
 services:
-  postgres:
-    image: postgres:16.1-alpine3.18
-    container_name: postgres
-    restart: unless-stopped
-    networks:
-      - internal
-    volumes:
-      - ./data/postgres:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-
   minecraft:
     image: itzg/minecraft-server:java17-graalvm
     container_name: minecraft
     restart: unless-stopped
     tty: true
     stdin_open: true
-    depends_on:
-      - postgres
     networks:
       - internal
     volumes:
@@ -53,12 +38,6 @@ services:
       CFG_MINECRAFT_RESOURCE_PACK_URL: ${MINECRAFT_RESOURCE_PACK_URL}
       CFG_MINECRAFT_RESOURCE_PACK_SHA1: ${MINECRAFT_RESOURCE_PACK_SHA1}
       CFG_MINECRAFT_ROOT_USER: ${MINECRAFT_ROOT_USER}
-
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_HOSTNAME: postgres
-      DATABASE_PORT: 5432
-      DATABASE_USERNAME: ${DATABASE_USERNAME}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
 
       EULA: true
       GUI: false
@@ -182,9 +161,6 @@ services:
         nullscape:w4mEZnbU
         towns-and-towers:avrYXbs7
         wwoo:cNiETBJi
-    labels:
-      traefik.http.routers.minecraft.rule: Host(`${DUCKDNS_SUBDOMAIN}.duckdns.org`)
-      traefik.http.services.minecraft.loadbalancer.server.port: 8123
 
   velocity:
     image: itzg/bungeecord:java17
@@ -214,6 +190,10 @@ services:
       ENABLE_RCON: true
       PLUGINS: |
         https://cdn.modrinth.com/data/VCAqN1ln/versions/NrhkEvGh/Maintenance-Velocity-4.2.0.jar
+    labels:
+      traefik.tcp.routers.minecraft.rule: HostSNI(`tavern.${DUCKDNS_SUBDOMAIN}.duckdns.org`)
+      traefik.tcp.routers.minecraft.tls: null
+      traefik.tcp.services.minecraft.loadbalancer.server.port: 25565
 
   prometheus:
     image: prom/prometheus:v2.48.0
