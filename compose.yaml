@@ -36,14 +36,14 @@ services:
     volumes:
       - ./config/minecraft/config:/config
       - ./config/minecraft/mods:/mods
-      - ./config/minecraft/dynmap/configuration.txt:/data/dynmap/configuration.txt
       - ./data/minecraft:/data
     environment:
-      MEMORY: "2G"
+      MEMORY: "3G"
       JVM_OPTS: ""
 
       VERSION: 1.20.2
       TYPE: "FABRIC"
+      COPY_CONFIG_DEST: /data
       REPLACE_ENV_VARIABLES: true
       REPLACE_ENV_DURING_SYNC: true
 
@@ -81,6 +81,7 @@ services:
         cloth-config:jvy82BGQ
         cristel-lib:HiLmugPC
         midnightlib:Ozm1zl15
+        yacl:vede4iWJ
         c2me-fabric:ilKwGRiJ
         carpet:xksYKkvF
         ferrite-core:unerR5MN
@@ -95,16 +96,19 @@ services:
         attack-through-grass:6B73MDT8
         axes-are-weapons:BDjHRAAE
         banner-flags:pQn2LUL0
+        brewery:YItLjOD4
         calcmod:BDwPfWKe
         convenient-mobgriefing:GYP5cKT7
         drops-into-shulker:CLO46UeR
         dynamic-lights:7cT5xqe9
         enchantment-decay:6fEOzo5e
+        enchantment-lore:h5cyRqLy
         essential-commands:IuECGm2c
         eye-spy:1qkfVn85
         flame-sweeping:RA6JAR4X
         hyperleash:hB1EDCYo
         improved-signs:BfHDRKtd
+        keep-some-inventory:7OKjECF7
         monsters-in-the-closet:XI1l9czA
         more-mobs:4ZQjIDUu
         netherite-beacons:SyQnSClE
@@ -119,6 +123,8 @@ services:
         tax-free-levels:KIjmjizn
         through-the-lily-pads-gently:pWQzvKBG
         unloaded-activity:hqwioCvS
+        wandering-collector:4W5aZn8x
+        where-is-it:where-is-it
         why-am-i-on-fire:xPOy7Kso
         balm:qHXzOzUv
         forgiving-void:MPiNyFvE
@@ -140,11 +146,13 @@ services:
         fish-on-the-line:LazFxAts
         followers-teleport-too:nFNnBMLh
         furnace-recycle:8Praefnr
+        grabby-mobs:G4pIW4Vx
         grass-seeds:HGPm4PPz
         grindstone-sharper-tools:FDrI0UOV
         hand-over-your-items:aAhS4Ag9
         ice-prevents-crop-growth:K1IahI2M
         inventory-totem:9xhX1Apw
+        just-mob-heads:KZDsRGFN
         keep-my-soil-tilled:DengqMwN
         mooshroom-spawn:6bJ53nEf
         move-boats:g7nbNgPd
@@ -159,6 +167,7 @@ services:
         spiders-produce-webs:c3e9qEny
         villager-death-messages:Fno2vfgD
         villager-names-serilum:WqNH3R93
+        village-spawn-point:O3aJ4TG4
         weaker-spiderwebs:y64pimyg
         wool-tweaks:1bjyBBLW
         better-trees:LHuXoUsx
@@ -168,6 +177,9 @@ services:
         nullscape:w4mEZnbU
         towns-and-towers:avrYXbs7
         wwoo:cNiETBJi
+    labels:
+      traefik.http.routers.minecraft.rule: Host(`${DUCKDNS_SUBDOMAIN}.duckdns.org`)
+      traefik.http.services.minecraft.loadbalancer.server.port: 8123
 
   velocity:
     image: itzg/bungeecord:java17
@@ -221,13 +233,27 @@ services:
      - internal
     volumes:
       - grafana-data:/var/lib/grafana
-    environment:
-      GF_SERVER_ROOT_URL: "%(protocol)s://%(domain)s/grafana/"
+    labels:
+      traefik.http.routers.grafana.rule: Host(`grafana.${DUCKDNS_SUBDOMAIN}.duckdns.org`)
+      traefik.http.services.grafana.loadbalancer.server.port: 3000
 
-  caddy:
-    image: caddy:2.7.5-alpine
-    container_name: caddy
+  traefik:
+    image: traefik:v2.10.5
+    container_name: traefik
     restart: unless-stopped
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.websecure.http.tls.domains[0].main=${DUCKDNS_SUBDOMAIN}.duckdns.org"
+      - "--entrypoints.websecure.http.tls.domains[0].sans=*.${DUCKDNS_SUBDOMAIN}.duckdns.org"
+      - "--certificatesresolvers.duckdnsResolver.acme.dnschallenge.provider=duckdns"
     depends_on:
       - minecraft
       - grafana
@@ -235,18 +261,24 @@ services:
       - "80:80"
       - "443:443"
       - "443:443/udp"
+      - "8080:8080"
     networks:
       - internal
       - external
     volumes:
       - caddy-data:/data
       - ./config/caddy:/config
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    environment:
+      DUCKDNS_TOKEN: ${DUCKDNS_TOKEN}
 
   duckdns:
     image: linuxserver/duckdns:version-e48542ca
     container_name: duckdns
     restart: unless-stopped
+    networks:
+      - internal
     environment:
-      SUBDOMAINS: ${DUCKDNS_SUBDOMAINS}
+      SUBDOMAINS: ${DUCKDNS_SUBDOMAIN}
       TOKEN: ${DUCKDNS_TOKEN}
       UPDATE_IP: ${DUCKDNS_UPDATE_IP}
