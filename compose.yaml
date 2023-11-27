@@ -40,7 +40,7 @@ services:
 
       EULA: true
       GUI: false
-      MOTD: "That's what you get with a \u00A7ccritical hit\u00A7r!"
+      MOTD: "That's what you get with a \\u00A7ccritical hit\\u00A7r!"
       ENABLE_WHITELIST: true
 
       ALLOW_FLIGHT: true
