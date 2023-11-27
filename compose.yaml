@@ -16,8 +16,10 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
+    ports:
+      - "25565:25565"
     networks:
-      - internal
+      - external
     volumes:
       - ./config/minecraft/config:/config
       - ./config/minecraft/mods:/mods
@@ -31,9 +33,6 @@ services:
       REPLACE_ENV_VARIABLES: true
       REPLACE_ENV_DURING_SYNC: true
 
-      CFG_DATABASE_USERNAME: ${DATABASE_USERNAME}
-      CFG_DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      CFG_DATABASE_NAME: ${DATABASE_NAME}
       CFG_MINECRAFT_DATAPACK_URL: ${MINECRAFT_DATAPACK_URL}
       CFG_MINECRAFT_RESOURCE_PACK_URL: ${MINECRAFT_RESOURCE_PACK_URL}
       CFG_MINECRAFT_RESOURCE_PACK_SHA1: ${MINECRAFT_RESOURCE_PACK_SHA1}
@@ -48,7 +47,7 @@ services:
       ANNOUNCE_PLAYER_ACHIEVEMENTS: false
       DIFFICULTY: normal
       ENABLE_COMMAND_BLOCK: true
-      ONLINE_MODE: false
+      ONLINE_MODE: true
       PVP: false
       SEED: -5132365962278556237
       SPAWN_PROTECTION: 0
@@ -166,35 +165,6 @@ services:
         nullscape:w4mEZnbU
         towns-and-towers:avrYXbs7
         wwoo:cNiETBJi
-
-  velocity:
-    image: itzg/bungeecord:java17
-    container_name: velocity
-    restart: unless-stopped
-    depends_on:
-      minecraft:
-        condition: service_healthy
-    ports:
-      - "25565:25577"
-    networks:
-      - internal
-      - external
-    volumes:
-      - ./config/velocity:/config
-      - ./data/velocity:/server
-    environment:
-      TYPE: VELOCITY
-      REPLACE_ENV_VARIABLES: true
-      REPLACE_ENV_DURING_SYNC: true
-
-      CFG_VELOCITY_SECRET: ${VELOCITY_SECRET}
-
-      JVM_OPTS: -Dvelocity.packet-decode-logging=true
-
-      DEBUG: false
-      ENABLE_RCON: true
-      PLUGINS: |
-        https://cdn.modrinth.com/data/VCAqN1ln/versions/NrhkEvGh/Maintenance-Velocity-4.2.0.jar
     labels:
       traefik.tcp.routers.minecraft.rule: HostSNI(`tavern.${DUCKDNS_SUBDOMAIN}.duckdns.org`)
       traefik.tcp.routers.minecraft.tls: null

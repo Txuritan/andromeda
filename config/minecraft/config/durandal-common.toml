@@ -25,9 +25,9 @@
 	#The message that gets show when the client is not allowed to connect to the server directly.
 	disconnectMessage = "This server requires you to connect with Velocity."
 	#Examples: text:<secret> env:FORWARDING_SECRET file:forwarding.secret
-	forwardingSecret = "text:${CFG_VELOCITY_SECRET}"
+	forwardingSecret = "text:<example>"
 	#This the Velocity proxy should be enabled.
-	enable = true
+	enable = false
 	#HACK
 	earlySend = false
 	#HACK
