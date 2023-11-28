@@ -105,6 +105,7 @@ services:
         ramel:2phry1w3
         saplanting:EO5ieVOe
         show-me-what-you-got:HXhkhLxu
+        sit!:i9CXUeL3
         spawn-animations:dJbCLsdr
         tax-free-levels:KIjmjizn
         through-the-lily-pads-gently:pWQzvKBG
@@ -117,6 +118,26 @@ services:
         forgiving-void:MPiNyFvE
         kleeslabs:XEBQ0HGG
         netherportalfix:5UbTkcSQ
+        purpurpacks-axe-effective-skulls:XMhEhgiU
+        purpurpack-axolotls-ignore-passives:BRkQlNxt
+        purpurpack-blasting-smelts-glass:kg47l5Fp
+        purpurpack-breed-axolotl-with-tropical-fish-item:mocBRxcj
+        purpurpacks-chiseled-bookshelves-add-enchantment-power:AP4Yn7oh
+        purpurpacks-copper-block-beacon-base:gQfLC53r
+        purpurpacks-hoe-effective-cactus:E7r75rN0
+        purpurpacks-hoe-effective-froglights:Ly6AXTCe
+        purpurpacks-more-dyed-wool-and-carpet:3Qy6hoB8
+        purpurpacks-one-step-dyed-shulker-boxes:iaw4ERNG
+        purpurpacks-pickaxe-effective-glass:68mYt2Z3
+        purpurpacks-pickaxe-effective-light-source-blocks:4wkzdXaF
+        purpurpacks-pickaxe-effective-reinforced-deepslate:FUukXOJi
+        purpurpacks-re-dye-concrete-powder:FJG4Taen
+        purpurpacks-re-dye-glass:Q2dMMsU2
+        purpurpacks-re-dye-terracotta:dW83mbTx
+        purpurpacks-silk-touch-budding-amethyst:p31OQTic
+        purpurpacks-silk-touch-reinforced-deepslate:TeGODzF6
+        purpurpack-smelt-raw-ore-blocks:JGsyxycS
+        purpurpacks-transparent-blocks-in-enchant-area:p9KRlNk5
         collective:Guw1MFbD
         bottle-your-xp:Ax5muOcA
         compact-help-command:MF3ZRv1n
