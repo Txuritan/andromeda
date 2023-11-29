@@ -190,6 +190,21 @@ services:
       traefik.tcp.routers.minecraft.tls: null
       traefik.tcp.services.minecraft.loadbalancer.server.port: 25565
 
+  minecraft-tavern-backup:
+    image: itzg/minecraft-server
+    container_name: minecraft-tavern-backup
+    restart: unless-stopped
+    depends_on:
+      minecraft-tavern:
+        condition: service_healthy
+    environment:
+      BACKUP_INTERVAL: "2h"
+      RCON_HOST: mc
+      INITIAL_DELAY: 0
+    volumes:
+      - ./data/minecraft/tavern:/data:ro
+      - ./data/backup/minecraft/tavern:/backups
+
   prometheus:
     image: prom/prometheus:v2.48.0
     container_name: prometheus
