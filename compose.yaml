@@ -201,6 +201,8 @@ services:
       BACKUP_INTERVAL: "2h"
       RCON_HOST: mc
       INITIAL_DELAY: 0
+    networks:
+      - internal
     volumes:
       - ./data/minecraft/tavern:/data:ro
       - ./data/backup/minecraft/tavern:/backups
