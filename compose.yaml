@@ -10,6 +10,40 @@ volumes:
   prometheus-data:
 
 services:
+  minecraft-nomi:
+    image: itzg/minecraft-server:java8
+    container_name: minecraft-nomi
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    ports:
+      - "25571:25565"
+    networks:
+      - external
+    volumes:
+      - ./config/minecraft/modpacks:/modpacks:ro
+      - ./data/minecraft/nomi:/data
+    environment:
+      MEMORY: "4G"
+      JVM_OPTS: ""
+
+      CF_API_KEY: ${CURSEFORGE_TOKEN}
+
+      TYPE: CURSEFORGE
+      CF_SERVER_MOD: /modpacks/nomi-ceu-1.6.1a-server.zip
+      CF_BASE_DIR: /data
+
+      EULA: true
+      GUI: false
+      ENABLE_WHITELIST: true
+
+      WHITELIST: ${MINECRAFT_ROOT_USER}
+      OPS: ${MINECRAFT_ROOT_USER}
+    labels:
+      traefik.tcp.routers.minecraft.rule: HostSNI(`nomi.${DUCKDNS_SUBDOMAIN}.duckdns.org`)
+      traefik.tcp.routers.minecraft.tls: null
+      traefik.tcp.services.minecraft.loadbalancer.server.port: 25571
+
   minecraft-tavern:
     image: itzg/minecraft-server:java17-graalvm
     container_name: minecraft-tavern
@@ -17,12 +51,12 @@ services:
     tty: true
     stdin_open: true
     ports:
-      - "25565:25565"
+      - "25570:25565"
     networks:
       - external
     volumes:
-      - ./config/minecraft/tavern/config:/config
-      - ./config/minecraft/tavern/mods:/mods
+      - ./config/minecraft/tavern/config:/config:ro
+      - ./config/minecraft/tavern/mods:/mods:ro
       - ./data/minecraft/tavern:/data
     environment:
       MEMORY: "3G"
@@ -188,7 +222,7 @@ services:
     labels:
       traefik.tcp.routers.minecraft.rule: HostSNI(`tavern.${DUCKDNS_SUBDOMAIN}.duckdns.org`)
       traefik.tcp.routers.minecraft.tls: null
-      traefik.tcp.services.minecraft.loadbalancer.server.port: 25565
+      traefik.tcp.services.minecraft.loadbalancer.server.port: 25570
 
   minecraft-tavern-backup:
     image: itzg/minecraft-server
