@@ -230,7 +230,7 @@ services:
       traefik.tcp.services.minecraft.loadbalancer.server.port: 25570
 
   minecraft-tavern-backup:
-    image: itzg/minecraft-server
+    image: itzg/mc-backup
     container_name: minecraft-tavern-backup
     restart: unless-stopped
     depends_on:
@@ -243,7 +243,7 @@ services:
     networks:
       - internal
     volumes:
-      - ./data/minecraft/tavern:/data
+      - ./data/minecraft/tavern:/data:ro
       - ./data/backup/minecraft/tavern:/backups
 
   prometheus:
