@@ -118,6 +118,8 @@ services:
         banner-flags:pQn2LUL0
         brewery:YItLjOD4
         calcmod:BDwPfWKe
+        carpet:xksYKkvF
+        carpet-extra:XiXJeZ6p
         chunky:t8SbUchF
         convenient-mobgriefing:GYP5cKT7
         drops-into-shulker:CLO46UeR
@@ -128,9 +130,11 @@ services:
         eye-spy:1qkfVn85
         fallingtree:7PRbBpzE
         flame-sweeping:RA6JAR4X
+        horsebuff:DVQXA6Vl
         hyperleash:hB1EDCYo
         improved-signs:BfHDRKtd
         keep-some-inventory:7OKjECF7
+        mastercutter:RU11YYFe
         monsters-in-the-closet:XI1l9czA
         more-mobs:4ZQjIDUu
         netherite-beacons:SyQnSClE
