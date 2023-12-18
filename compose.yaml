@@ -104,6 +104,7 @@ services:
         yacl:vede4iWJ
         c2me-fabric:ilKwGRiJ
         carpet:xksYKkvF
+        carpet-extra:XiXJeZ6p
         ferrite-core:unerR5MN
         krypton:cQ60Ouax
         lazydfu:4SHylIO9
@@ -118,8 +119,6 @@ services:
         banner-flags:pQn2LUL0
         brewery:YItLjOD4
         calcmod:BDwPfWKe
-        carpet:xksYKkvF
-        carpet-extra:XiXJeZ6p
         chunky:t8SbUchF
         convenient-mobgriefing:GYP5cKT7
         drops-into-shulker:CLO46UeR
