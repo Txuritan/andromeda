@@ -12,6 +12,8 @@ volumes:
 services:
   minecraft-nomi:
     image: itzg/minecraft-server:java8
+    profiles:
+      - donotstart
     container_name: minecraft-nomi
     restart: unless-stopped
     tty: true
