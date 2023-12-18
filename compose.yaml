@@ -53,7 +53,7 @@ services:
     tty: true
     stdin_open: true
     ports:
-      - "25570:25565"
+      - "25565:25565"
     networks:
       - external
     volumes:
@@ -227,7 +227,7 @@ services:
     labels:
       traefik.tcp.routers.minecraft.rule: HostSNI(`tavern.${DUCKDNS_SUBDOMAIN}.duckdns.org`)
       traefik.tcp.routers.minecraft.tls: null
-      traefik.tcp.services.minecraft.loadbalancer.server.port: 25570
+      traefik.tcp.services.minecraft.loadbalancer.server.port: 25565
 
   minecraft-tavern-backup:
     image: itzg/mc-backup
